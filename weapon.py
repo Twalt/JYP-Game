@@ -1,7 +1,4 @@
-import item
-Item = item.Item
+from item import Item
 class weapon(Item):
-	def setCoord(self, loc):
-		Item.setCoord(self, loc)
-	def getCoord(self):
-		return Item.getCoord()
+	def getDamage(self):
+		return 8

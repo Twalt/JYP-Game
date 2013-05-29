@@ -6,13 +6,20 @@
 #  Copyright 2013 Arjun <Arjun@HYPERION>
 #  
 #  
-import weapon
-import location
-loc = location.Location(1, 1)
+from weapon import weapon
+from item import Location
+from character import Character
+import armor
 def main():
-	f = weapon.weapon()
-	f.setCoord(loc)
-	print(f.getCoord())
+	y = Character(Location(45,4))
+	z = armor.helm(Location(2,2))
+	y.helm = z
+	y.helm.setLoc(Location(-2,-2))
+	f = weapon(Location(1, 1))
+	print(f.loc)
+	print(z.loc)
+	print(y.helm.loc)
+	print(f.loc)
 	return 0
 
 main()
