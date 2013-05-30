@@ -31,9 +31,9 @@ ll                                          |                      |            
                    lllll                                                     lllll                    
                       lllll                                               lllll                      1
                          lllll                                         lllll                         2
-                            lllll                                   lllll                            3
-                               lllll              W              lllll                               4
-                                  lllll           x           lllll                                  5
+                            lllll                 W                 lllll                            3
+                               lllll                             lllll                               4
+                                  lllll           X           lllll                                  5
                                      lllll                 lllll                                     6
                                         lllll           lllll                                        7
                                            lllll     lllll                                           8
