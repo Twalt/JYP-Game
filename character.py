@@ -3,3 +3,4 @@ from item import Item
 
 class Character(Item):
 	pass
+
