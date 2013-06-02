@@ -1,13 +1,16 @@
 Things to do:
-add direction to character
-	should this be a property or stored value
-	if property, create class, use object
-		set based on var value
-	if value, create then set in main based on var
-add compass?
+#add direction to character
+#	should this be a property or stored value
+#	if property, create class, use object
+#		set based on var value
+#	if value, create then set in main based on var
+#add compass?
+create Items - spawn
+object proximity warning
+	only in front? back by 1 space
+Pickup
+Inventory list
 create walls & doors
 	create v barrier
 spawn object
-object proximity warning
-	only in front? back by 1 space
 move multiple spaces
