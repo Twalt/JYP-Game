@@ -2,6 +2,7 @@ from item import Item
 import random
 
 class armor(Item):
+	#creates Item at location
 	def __init__(self, loc):
 		super(armor, self).__init__(loc)
 		self.arVal = random.randint(self.__start__, self.__end__)
