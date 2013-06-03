@@ -17,8 +17,7 @@ def main():
 	try:
 		valid = True
 		you = Character(Location(25,35), Compass(0))
-		#prints location of you - loc is Location val
-		generateItems()
+		items = generateItems()
 		
 		while valid:
 			print(you.loc)
@@ -26,10 +25,7 @@ def main():
 			command = var.split(' ')
 			if command[0] == 'quit':
 				valid = False
-				
-			#checks input for a command
-
-	
+					
 			events = dict()
 			events['quit'] = doQuit
 			events['turn'] = doTurn
@@ -63,24 +59,16 @@ def doTurn(you, command, way, *extras):
 	return True
 
 def doMove(you, *command):
-	moveVal = 1
+	x = 1
 	try:
 		print(len(command))
 		if len(command) >2:
 			if command[2] != '':
-				moveVal = int(command[2])
+				x = int(command[2])
 	except ValueError:
-		moveVal = 0
-	if moveVal == 0:
+		x = 0
+	if x == 0:
 		print("Invalid move distance")
-	moveYou(you, moveVal)
-	return True
-	
-def doCompass(you, *extras):
-	print("You are facing " + str(you.compass) + ".")
-	return True
-
-def moveYou(you, x):
 	#North
 	if you.compass.direction == 0:
 		you.loc = Location(you.loc.x, you.loc.y - x)
@@ -93,13 +81,21 @@ def moveYou(you, x):
 	#West
 	elif you.compass.direction == 3:
 		you.loc = Location(you.loc.x - x, you.loc.y)
+	return True
 	
-def moveDist(var):
-	return retVal
+def doCompass(you, *extras):
+	print("You are facing " + str(you.compass) + ".")
+	return True
+
 	
-def generateItems():	
-	xVal = random.randint(1, 49)
-	yVal = random.randint(1, 22)
+def generateItems():
+	retItems = [armor.helm(), armor.boots(), armor.gauntlets(), 
+				armor.legplates(), armor.shoulderplates(), 
+				armor.breastplate()]
+	for i in retItems:
+		xVal = random.randint(1, 49)
+		yVal = random.randint(1, 22)
+		i.loc = Location(xVal, yVal)
 	
 main()
 

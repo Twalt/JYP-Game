@@ -9,5 +9,3 @@ class Item(object):
     def __init__(self, loc):
         self.loc = loc
         
-    def setLoc(self, loc):
-        self.loc = loc
