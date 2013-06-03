@@ -28,34 +28,57 @@ def main():
 				valid = False
 				
 			#checks input for a command
-			inVal = inputValidation(command)
-			if inVal == -1:
-				print("I do not understand that command")
-			elif inVal == 1:
-				howMuch = moveDist(command)
-				if howMuch == 0:
-					print("Invalid move distance")
-				moveYou(you, howMuch)
-			elif inVal == 2:
-				you.compass.direction -= 1
-				if you.compass.direction < 0:
-					you.compass.direction += 4
-			elif inVal == 3:
-				you.compass.direction += 1
-				if you.compass.direction > 3:
-					you.compass.direction -= 4
-			elif inVal == 4:
-				you.compass.direction += 2
-				if you.compass.direction > 3:
-					you.compass.direction -= 4
-			elif inVal == 5:
-				print(you.compass)
+
+	
+			events = dict()
+			events['quit'] = doQuit
+			events['turn'] = doTurn
+			events['move'] = doMove
+			events['walk'] = doMove
+			events['compass'] = doCompass
+			
+			for key in events:
+				if command[0] == key:
+					doThis = events[key]
+					valid = doThis(you, *command)
+			
+			if you.compass.direction < 0:
+				you.compass.direction += 4
+			elif you.compass.direction > 3:
+				you.compass.direction -= 4
+				
 	except KeyboardInterrupt:
 		print("\nQuitting")
 
-def generateItems():	
-	xVal = random.randint(1, 49)
-	yVal = random.randint(1, 22)
+def doQuit(*extras):
+	return False
+	
+def doTurn(you, command, way, *extras):
+	if way == 'left':
+		you.compass.direction -= 1
+	elif way == 'right':
+		you.compass.direction += 1
+	elif way == 'around':
+		you.compass.direction += 2
+	return True
+
+def doMove(you, *command):
+	moveVal = 1
+	try:
+		print(len(command))
+		if len(command) >2:
+			if command[2] != '':
+				moveVal = int(command[2])
+	except ValueError:
+		moveVal = 0
+	if moveVal == 0:
+		print("Invalid move distance")
+	moveYou(you, moveVal)
+	return True
+	
+def doCompass(you, *extras):
+	print("You are facing " + str(you.compass) + ".")
+	return True
 
 def moveYou(you, x):
 	#North
@@ -72,34 +95,11 @@ def moveYou(you, x):
 		you.loc = Location(you.loc.x - x, you.loc.y)
 	
 def moveDist(var):
-	retVal = 1
-	try:
-		print(len(var))
-		if var[2] != '':
-			retVal = int(var[2])
-	except ValueError:
-		retVal = 0
 	return retVal
 	
-def inputValidation(var):
-	outVal = -1
-	
-	if var[0] == 'quit':
-		outVal = 0
-	elif var[0] == 'move' or var[0] == 'walk':
-		if var[1] == 'forward':
-			outVal = 1
-	elif var[0] == 'turn':
-		if var[1] == 'left':
-			outVal = 2
-		elif var[1] == 'right':
-			outVal = 3
-		elif var[1] == 'around':
-			outVal = 4
-	elif var[0] == 'compass':
-		outVal = 5
-			
-	return outVal
+def generateItems():	
+	xVal = random.randint(1, 49)
+	yVal = random.randint(1, 22)
 	
 main()
 
