@@ -4,7 +4,13 @@ class Location(object):
         
     def __str__(self):
         return "%d, %d" % (self.x, self.y)
- 
+        
+    def __eq__(self, other): 
+        if self.x == other.x:
+            if self.y == other.y:
+                return True
+        return False
+
 class Item(object):
     def __init__(self, loc):
         self.loc = loc
