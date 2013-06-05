@@ -23,7 +23,7 @@ def main():
 		
 		while valid:
 			#print(you.loc)
-			var = input("What would you like to do? : ")
+			var = raw_input("What would you like to do? : ")
 			command = var.split(' ')
 			if command[0] == 'quit':
 				valid = False
