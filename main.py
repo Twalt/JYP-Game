@@ -4,9 +4,10 @@
 #  main.py
 #  
 #  Copyright 2013 Arjun <Arjun@HYPERION>
-#  
+#
 from character import Character
 from character import Compass
+from obstacle import Wall
 from weapon import weapon
 from item import Location
 import random
@@ -17,8 +18,10 @@ def main():
 	try:
 		valid = True
 		you = Character(Location(25,35), Compass(0))
+		obstacles = generateObstacles()
 		items = generateItems()
-		
+		for z in obstacles:
+			print(z)
 		while valid:
 			print(you.loc)
 			var = input("What would you like to do? : ")
@@ -45,6 +48,16 @@ def main():
 				
 	except KeyboardInterrupt:
 		print("\nQuitting")
+
+def generateObstacles():
+	obs = [Wall(Location(50, 40))]
+	for x in range (0, 51):
+		obs.append(Wall(Location(x, 0)))
+		obs.append(Wall(Location(x, 40)))
+	for y in range(1, 39):
+		obs.append(Wall(Location(0, y)))
+		obs.append(Wall(Location(50, y)))
+	return obs
 
 def doQuit(*extras):
 	return False
@@ -96,6 +109,7 @@ def generateItems():
 		xVal = random.randint(1, 49)
 		yVal = random.randint(1, 22)
 		i.loc = Location(xVal, yVal)
+	return retItems
 	
 main()
 
