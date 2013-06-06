@@ -16,14 +16,19 @@ import sys
 
 def main():
 	try:
+		print("Type 'help' for a list of commands!")
 		valid = True
 		you = Character(Location(25,35), Compass(0))
 		obstacles = generateObstacles()
 		items = generateItems()
 		
 		while valid:
-			#print(you.loc)
-			var = raw_input("What would you like to do? : ")
+			print(you.loc)
+			try:
+				var = raw_input("What would you like to do? : ")
+			except NameError:
+				var = input("What would you like to do? : ")
+				
 			command = var.split(' ')
 			if command[0] == 'quit':
 				valid = False
@@ -35,11 +40,18 @@ def main():
 			events['walk'] = doMove
 			events['compass'] = doCompass
 			events['look'] = doLook
+			events['help'] = doHelp
+			
+			validCommand = False
 			
 			for key in events:
 				if command[0] == key:
 					doThis = events[key]
 					valid = doThis(you, obstacles, *command)
+					validCommand = True
+			
+			if not validCommand:
+				print("You can't do that right now.")
 			
 			if you.compass.direction < 0:
 				you.compass.direction += 4
@@ -58,6 +70,15 @@ def generateObstacles():
 		obs.append(Wall(Location(0, y)))
 		obs.append(Wall(Location(51, y)))
 	return obs
+
+def doHelp(*extras):
+	f = open('help.txt')
+	lines = f.readlines()
+	f.close
+	for l in lines:
+		print(l.rstrip("\n"))
+	
+	return True
 
 def doLook(you, obstacles, command, way, *extras):
 	retVal = 0
@@ -161,7 +182,15 @@ def doMove(you, obstacles, *command):
 	
 	validLoc = 0
 	moveVal = 0
-	
+	if len(command) >1:
+		if command[1] != "forward":
+			validLoc = 3
+			x = 0
+	else:
+		validLoc = 3
+		x = 0
+		
+		
 	for o in obstacles:
 		if o.loc == newloc:
 			validLoc = 1
@@ -192,6 +221,8 @@ def doMove(you, obstacles, *command):
 		
 	if validLoc == 1:
 		print("There is a wall in your way")
+	elif validLoc == 3:
+		print("You must specify a direction! Only forward works!")
 	else:
 		you.loc = newloc
 	
@@ -200,7 +231,6 @@ def doMove(you, obstacles, *command):
 def doCompass(you, *extras):
 	print("You are facing " + str(you.compass) + ".")
 	return True
-
 	
 def generateItems():
 	retItems = [armor.helm(), armor.boots(), armor.gauntlets(), 

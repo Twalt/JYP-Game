@@ -1,0 +1,18 @@
+~~~~~~~~~~~~JYP Game Help~~~~~~~~~~~~
+            Commands List
+Movement:
+	walk forward        - Moves you forward 1
+	move forward        - Moves you forward 1
+	walk forward x      - Moves you forward x
+	move forward x 	    - Moves you forward x
+	turn left           - Orients to the left of what you were facing
+	turn right          - Orients to the right of what you were facing
+	turn around	        - Orients to the opposite direction of what you were facing
+
+Information:
+	look left           - Shows anything to your left
+	look right          - Shows anything to your right
+	compass             - Reveals your Map Orientation
+	
+	quit                - Exit the game
+
