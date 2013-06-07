@@ -1,12 +1,22 @@
 Things to do:
 
+crashes when only type look
 object proximity warning
 	only in front? back by 1 space
 Pickup
+Pickup
 Inventory list
-create walls & doors
+landmarks
+look (around)
+weapon
+attack defense stats
+boss
+house
+
+
+#create walls & 
+	doors
 	create v barrier
-	
 #spawn object
 #add direction to character
 #	should this be a property or stored value

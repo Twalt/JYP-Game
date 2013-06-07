@@ -1,67 +1,89 @@
 0 1 2 3 4 5 6 7 8 9   1 2 3 4 5 6 7 8 9   1 2 3 4 5 6 7 8 9   1 2 3 4 5 6 7 8 9   1 2 3 4 5 6 7 8 9  51
-llllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll 0
-ll                                                                                                 l 1
-ll                                                                                  G              l 2
-ll                                                                                                 l 3
-ll                                                                                                 l 4
-ll           XXXX                                                                                  l 5
-ll           XXXX                                                                                  l 6
-ll           XXXX                                                                                  l 7
-ll                     O                                                                           l 8
-ll                                                                                            L    ll9
-ll                                                                                                 l  
-ll                                                                                                 ll1
-ll                                                                                                 l 2
-ll                                                                           S                     ll3
-ll                                                    H                                            ll4
-ll                                          |---------| |----------|                               ll5
-ll                                          |                      |                               ll6
-ll                                          |                      |                               ll7
-ll        B                                 |                      |                               ll8
-ll                                          |                      |                               ll9
-ll                                          |                      |                               ll 
-ll                                          |                      |                               ll1
-ll                                          |                      |                               ll2
-ll                                          |                      |                              ll 3
- lllll                                      |                      |                           lllll 4
-    lllll                                   |                      |                        lllll    5
-       lllll                                |                      |                     lllll       6
-          lllll                             |----------------------|                  lllll          7
-             lllll                                                                 lllll             8
-                lllll                                                           lllll                9
-                   lllll                                                     lllll                    
-                      lllll                                               lllll                      1
-                         lllll                                         lllll                         2
-                            lllll                 W                 lllll                            3
-                               lllll                             lllll                               4
-                                  lllll           X           lllll                                  5
-                                     lllll                 lllll                                     6
-                                        lllll           lllll                                        7
-                                           lllll     lllll                                           8
-llllllllllllllllllllllllllllllllllllllllll    lllllllll    llllllllllllllllllllllllllllllllllllllllll9
+lllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll 0
+ll                                                                                                 ll 1
+ll                                                                                  G              ll 2
+ll                                                                                                 ll 3
+ll                                                                                                 ll 4
+ll                                                                                                 ll 5
+ll                                                                                                 ll 6
+ll                                                                                                 ll 7
+ll                     O                                                                           ll 8
+ll                                                                                            L    ll 9
+ll                                                                                                 ll  
+ll                                                                                                 ll 1
+ll                                                                                                 ll 2
+ll                                                                           S                     ll 3
+ll                                                    H                                            ll 4
+ll                                          |---------| |----------|                               ll 5
+ll                                          |                      |                               ll 6
+ll                                          |                      |                               ll 7
+ll        B                                 |                      |                               ll 8
+ll                                          |                      |                               ll 9
+ll                                          |                      |                               ll  
+ll                                          |                      |                               ll 1
+ll                                          |                      |                               ll 2
+ll                                          |                      |                              ll  3
+ lllll                                      |                      |                           lllll  4
+    lllll                                   |                      |                        lllll     5
+       lllll                                |                      |                     lllll        6
+          lllll                             |----------------------|                  lllll           7
+             lllll                                                                 lllll              8
+                lllll                                                           lllll                 9
+                   lllll                                                     lllll                     
+                      lllll                                               lllll                       1
+                         lllll                                         lllll                          2
+                            lllll                 W                 lllll                             3
+                               lllll                             lllll                                4
+                                  lllll           X           lllll                                   5
+                                     lllll                 lllll                                      6
+                                        lllll           lllll                                         7
+                                           lllll     lllll                                            8
+                                              lllllllll                                               9
 
-0, 24
-1, 25
-2, 25
-3, 26
-4, 27
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
+
+MAP VERSION 2    (2 across = 1 down)
+0 1 2 3 4 5 6 7 8 9   1 2 3 4 5 6 7 8 9   1 2 3 4 5 6 7 8 9   1 2 3 4 5 6 7 8 9   1 2 3 4 5 6 7 8 9 51
+llllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll 0
+ll                                                                                                  ll 1
+ll                                                                                                  ll 2
+ll                                                                                                  ll 3
+ll                        b-  r-  o-  k-  e---                                                      ll 4
+ll          XXXX          ..................n---                                                    ll 5
+ll          XXXX          ....................f-  \\  n-  c-e-1- ----  XOUTXa---                    ll 6
+ll                      ..........................~~...................HOUSE  n-                    ll 7
+ll                     ...........................~~...................X|X|X      o-                ll 8
+ll                    ............................~~..............................t-                ll 9
+ll                           .....................~~~~............................                  ll  
+ll                             .....................~~............................h-                ll 1
+ll                            XT....................~~...................................           ll 2
+ll                          XXREEX..................~~~~..........................r---              ll 3
+ll                            X2......................~~............................b---            ll 4
+ll                              ............ll--------||----------ll..................r-            ll 5
+ll                            ..............ll                    ll................XT--            ll 6
+ll                                ..........ll                    ll..............XXREEXX           ll 7
+ll                                ..........ll  AGIANTFUCKINGDR   ll................X3--            ll 8
+ll                         XA       ........ll  AGONORSOMESHITT   ll..................o-            ll 9
+ll                        VERY        ......ll  HATWILLTOTALLYF   ll..................              ll  
+ll                        STUB        ......ll  UCKYOURSHITUPNO   ll..................k-            ll 1
+ll                        BORN        ......ll  JOKEDUDEITSFUCK   ll..................              ll 2
+ll                        COWX          ....ll  INGHUGEANDITSPI   ll..................e-            ll 3
+ll        xx                            ....ll  TSFUCKINGNAPALM   ll..................              ll 4
+ll      xBOx                            ....ll  ANDACIDANDFIRE!   ll............      n-            ll 5
+ll      xULDx                             ..ll                    ll..........                      ll 6
+ll        xERx                            ..llllllllllllllllllllllll........          f-  e-  nce-  ll 7
+ll          xx                               ..............................                          ll 8
+ll          xx                                               ............                           ll 9
+ll                                                              ......                              ll  
+ll                                                                  ..                              ll 1
+ll                                                                                                  ll 2
+ll                                                WW                                                ll 3
+ll                    XT                                                                            ll 4
+ll                  XXREEX                        YU                                                ll 5
+ll                    X1                                                                  CHEST     ll 6
+ll                                                                                        XXXXX     ll 7
+ll                                                                                                  ll 8
+llllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll 9
+
+. = dead flowers and shit
+  = grass
+~ = path
