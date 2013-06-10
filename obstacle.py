@@ -9,3 +9,11 @@ class Obstacle(object):
 class Wall(Obstacle):
 	def __init__(self, loc):
 		self.loc = loc
+
+class Landmark(Obstacle):
+	def __init__(self,loc , lType):
+		self.loc = loc
+		self.lType = lType
+		
+	def __str__(self):
+		return "%s" % (self.lType)

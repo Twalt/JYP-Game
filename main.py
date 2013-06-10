@@ -7,6 +7,7 @@
 #
 from character import Character
 from character import Compass
+from obstacle import Landmark
 from obstacle import Wall
 from weapon import weapon
 from item import Location
@@ -20,6 +21,7 @@ def main():
 		valid = True
 		you = Character(Location(25,35), Compass(0))
 		obstacles = generateObstacles()
+		Landmarks = generateLandmarks()
 		items = generateItems()
 		
 		while valid:
@@ -60,6 +62,92 @@ def main():
 				
 	except KeyboardInterrupt:
 		print("\nQuitting")
+
+def generateLandmarks():
+	boulder = [Landmark(Location(5, 24), 'boulder'), 
+				Landmark(Location(4, 25), 'boulder'), 
+				Landmark(Location(5, 25), 'boulder'), 
+				Landmark(Location(4, 26), 'boulder'), 
+				Landmark(Location(5, 26), 'boulder'), 
+				Landmark(Location(6, 26), 'boulder'), 
+				Landmark(Location(5, 27), 'boulder'), 
+				Landmark(Location(6, 27), 'boulder'), 
+				Landmark(Location(6, 28), 'boulder'), 
+				Landmark(Location(6, 29), 'boulder')]
+	tree1 = [Landmark(Location(11, 34), 'dead tree'),
+				Landmark(Location(10, 35), 'dead tree'),
+				Landmark(Location(11, 35), 'dead tree'),
+				Landmark(Location(12, 35), 'dead tree'),
+				Landmark(Location(11, 36), 'dead tree')]
+	tree2 = [Landmark(Location(15, 12), 'dead tree'),
+				Landmark(Location(14, 13), 'dead tree'),
+				Landmark(Location(15, 13), 'dead tree'),
+				Landmark(Location(16, 13), 'dead tree'),
+				Landmark(Location(15, 14), 'dead tree')]
+	tree3 = [Landmark(Location(42, 16), 'dead tree'),
+				Landmark(Location(41, 17), 'dead tree'),
+				Landmark(Location(42, 17), 'dead tree'),
+				Landmark(Location(43, 17), 'dead tree'),
+				Landmark(Location(42, 18), 'dead tree')]
+	fence = [Landmark(Location(13, 4), 'broken fence'),
+				Landmark(Location(15, 4), 'broken fence'),
+				Landmark(Location(17, 4), 'broken fence'),
+				Landmark(Location(19, 4), 'broken fence'),
+				Landmark(Location(21, 4), 'broken fence'),
+				Landmark(Location(22, 4), 'broken fence'),
+				Landmark(Location(22, 5), 'broken fence'),
+				Landmark(Location(23, 5), 'broken fence'),
+				Landmark(Location(23, 6), 'broken fence'),
+				Landmark(Location(25, 6), 'broken fence gate'),
+				Landmark(Location(27, 6), 'broken fence'),
+				Landmark(Location(30, 6), 'broken fence'),
+				Landmark(Location(31, 6), 'broken fence'),
+				Landmark(Location(33, 6), 'broken fence'),
+				Landmark(Location(39, 6), 'broken fence'),
+				Landmark(Location(41, 6), 'broken fence'),
+				Landmark(Location(41, 8), 'broken fence'),
+				Landmark(Location(41, 9), 'broken fence'),
+				Landmark(Location(41, 11), 'broken fence'),
+				Landmark(Location(41, 13), 'broken fence'),
+				Landmark(Location(42, 13), 'broken fence'),
+				Landmark(Location(42, 14), 'broken fence'),
+				Landmark(Location(43, 14), 'broken fence'),
+				Landmark(Location(43, 15), 'broken fence'),
+				Landmark(Location(43, 16), 'broken fence'),
+				Landmark(Location(43, 18), 'broken fence'),
+				Landmark(Location(43, 19), 'broken fence'),
+				Landmark(Location(43, 21), 'broken fence'),
+				Landmark(Location(43, 23), 'broken fence'),
+				Landmark(Location(43, 25), 'broken fence'),
+				Landmark(Location(43, 27), 'broken fence'),
+				Landmark(Location(45, 27), 'broken fence'),
+				Landmark(Location(47, 27), 'broken fence'),
+				Landmark(Location(48, 27), 'broken fence')]
+	outhouse = [Landmark(Location(36, 6), 'smelly boarded-up outhouse'),
+				Landmark(Location(37, 6), 'smelly boarded-up outhouse'),
+				Landmark(Location(38, 6), 'smelly boarded-up outhouse'),
+				Landmark(Location(36, 7), 'smelly boarded-up outhouse'),
+				Landmark(Location(37, 7), 'smelly boarded-up outhouse'),
+				Landmark(Location(38, 7), 'smelly boarded-up outhouse'),
+				Landmark(Location(36, 8), 'smelly boarded-up outhouse'),
+				Landmark(Location(37, 8), 'smelly boarded-up outhouse'),
+				Landmark(Location(38, 8), 'smelly boarded-up outhouse')]
+	chest = [Landmark(Location(45, 36), 'mysterious locked chest'),
+				Landmark(Location(46, 36), 'mysterious locked chest'),
+				Landmark(Location(47, 36), 'mysterious locked chest'),
+				Landmark(Location(45, 37), 'mysterious locked chest'),
+				Landmark(Location(46, 37), 'mysterious locked chest'),
+				Landmark(Location(47, 37), 'mysterious locked chest')]
+	cow = [Landmark(Location(13, 19), 'stubborn cow'),
+				Landmark(Location(14, 19), 'stubborn cow'),
+				Landmark(Location(13, 20), 'stubborn cow'),
+				Landmark(Location(14, 20), 'stubborn cow'),
+				Landmark(Location(13, 21), 'stubborn cow'),
+				Landmark(Location(14, 21), 'stubborn cow'),
+				Landmark(Location(13, 22), 'stubborn cow'),
+				Landmark(Location(14, 22), 'stubborn cow')]
+	return [boulder, tree1, tree2, tree3, fence, outhouse, chest, cow]			
+		
 
 def generateObstacles():
 	obs = [Wall(Location(51, 41))]

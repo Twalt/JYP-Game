@@ -49,9 +49,9 @@ ll                                                                              
 ll                                                                                                  ll 3
 ll                        b-  r-  o-  k-  e---                                                      ll 4
 ll          XXXX          ..................n---                                                    ll 5
-ll          XXXX          ....................f-  \\  n-  c-e-1- ----  XOUTXa---                    ll 6
-ll                      ..........................~~...................HOUSE  n-                    ll 7
-ll                     ...........................~~...................X|X|X      o-                ll 8
+ll          XXXX          ....................f-  \\  n-  c-e-1-  --    XOUTXXa-  n-                ll 6
+ll                      ..........................~~................... HOUSEX                      ll 7
+ll                     ...........................~~................... X|X|XX    o-                ll 8
 ll                    ............................~~..............................t-                ll 9
 ll                           .....................~~~~............................                  ll  
 ll                             .....................~~............................h-                ll 1
@@ -62,16 +62,16 @@ ll                              ............ll--------||----------ll............
 ll                            ..............ll                    ll................XT--            ll 6
 ll                                ..........ll                    ll..............XXREEXX           ll 7
 ll                                ..........ll  AGIANTFUCKINGDR   ll................X3--            ll 8
-ll                         XA       ........ll  AGONORSOMESHITT   ll..................o-            ll 9
+ll                        XXAX      ........ll  AGONORSOMESHITT   ll..................o-            ll 9
 ll                        VERY        ......ll  HATWILLTOTALLYF   ll..................              ll  
 ll                        STUB        ......ll  UCKYOURSHITUPNO   ll..................k-            ll 1
 ll                        BORN        ......ll  JOKEDUDEITSFUCK   ll..................              ll 2
-ll                        COWX          ....ll  INGHUGEANDITSPI   ll..................e-            ll 3
+ll                                      ....ll  INGHUGEANDITSPI   ll..................e-            ll 3
 ll        xx                            ....ll  TSFUCKINGNAPALM   ll..................              ll 4
 ll      xBOx                            ....ll  ANDACIDANDFIRE!   ll............      n-            ll 5
-ll      xULDx                             ..ll                    ll..........                      ll 6
+ll      xULDxX                            ..ll                    ll..........                      ll 6
 ll        xERx                            ..llllllllllllllllllllllll........          f-  e-  nce-  ll 7
-ll          xx                               ..............................                          ll 8
+ll          xx                               ..............................                         ll 8
 ll          xx                                               ............                           ll 9
 ll                                                              ......                              ll  
 ll                                                                  ..                              ll 1
