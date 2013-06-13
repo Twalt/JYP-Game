@@ -82,7 +82,9 @@ ll                  XXREEX                        YU                            
 ll                    X1                                                                  CHEST     ll 6
 ll                                                                                        XXXXX     ll 7
 ll                                                                                                  ll 8
-llllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll 9
+ll                                                                                                  ll 9
+ll                                                                                                  ll 40
+llllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll 41
 
 . = dead flowers and shit
   = grass

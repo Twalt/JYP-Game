@@ -10,6 +10,9 @@ class Wall(Obstacle):
 	def __init__(self, loc):
 		self.loc = loc
 
+	def __str__(self):
+		return "wall"
+		
 class Landmark(Obstacle):
 	def __init__(self,loc , lType):
 		self.loc = loc

@@ -20,8 +20,11 @@ def main():
 		print("Type 'help' for a list of commands!")
 		valid = True
 		you = Character(Location(25,35), Compass(0))
-		obstacles = generateObstacles()
+		obs = generateObstacles()
 		Landmarks = generateLandmarks()
+		obstacles = [obs]
+		for l in Landmarks:
+			obstacles.append(l)
 		items = generateItems()
 		
 		while valid:
@@ -79,16 +82,16 @@ def generateLandmarks():
 				Landmark(Location(11, 35), 'dead tree'),
 				Landmark(Location(12, 35), 'dead tree'),
 				Landmark(Location(11, 36), 'dead tree')]
-	tree2 = [Landmark(Location(15, 12), 'dead tree'),
-				Landmark(Location(14, 13), 'dead tree'),
-				Landmark(Location(15, 13), 'dead tree'),
-				Landmark(Location(16, 13), 'dead tree'),
-				Landmark(Location(15, 14), 'dead tree')]
-	tree3 = [Landmark(Location(42, 16), 'dead tree'),
-				Landmark(Location(41, 17), 'dead tree'),
-				Landmark(Location(42, 17), 'dead tree'),
-				Landmark(Location(43, 17), 'dead tree'),
-				Landmark(Location(42, 18), 'dead tree')]
+	tree2 = [Landmark(Location(15, 12), 'plagued tree'),
+				Landmark(Location(14, 13), 'plagued tree'),
+				Landmark(Location(15, 13), 'plagued tree'),
+				Landmark(Location(16, 13), 'plagued tree'),
+				Landmark(Location(15, 14), 'plagued tree')]
+	tree3 = [Landmark(Location(42, 16), 'charred tree'),
+				Landmark(Location(41, 17), 'charred tree'),
+				Landmark(Location(42, 17), 'charred tree'),
+				Landmark(Location(43, 17), 'charred tree'),
+				Landmark(Location(42, 18), 'charred tree')]
 	fence = [Landmark(Location(13, 4), 'broken fence'),
 				Landmark(Location(15, 4), 'broken fence'),
 				Landmark(Location(17, 4), 'broken fence'),
@@ -138,14 +141,14 @@ def generateLandmarks():
 				Landmark(Location(45, 37), 'mysterious locked chest'),
 				Landmark(Location(46, 37), 'mysterious locked chest'),
 				Landmark(Location(47, 37), 'mysterious locked chest')]
-	cow = [Landmark(Location(13, 19), 'stubborn cow'),
-				Landmark(Location(14, 19), 'stubborn cow'),
-				Landmark(Location(13, 20), 'stubborn cow'),
-				Landmark(Location(14, 20), 'stubborn cow'),
-				Landmark(Location(13, 21), 'stubborn cow'),
-				Landmark(Location(14, 21), 'stubborn cow'),
-				Landmark(Location(13, 22), 'stubborn cow'),
-				Landmark(Location(14, 22), 'stubborn cow')]
+	cow = [Landmark(Location(13, 19), 'very stubborn cow'),
+				Landmark(Location(14, 19), 'very stubborn cow'),
+				Landmark(Location(13, 20), 'very stubborn cow'),
+				Landmark(Location(14, 20), 'very stubborn cow'),
+				Landmark(Location(13, 21), 'very stubborn cow'),
+				Landmark(Location(14, 21), 'very stubborn cow'),
+				Landmark(Location(13, 22), 'very stubborn cow'),
+				Landmark(Location(14, 22), 'very stubborn cow')]
 	return [boulder, tree1, tree2, tree3, fence, outhouse, chest, cow]			
 		
 
@@ -279,9 +282,12 @@ def doMove(you, obstacles, *command):
 		x = 0
 		
 		
-	for o in obstacles:
-		if o.loc == newloc:
-			validLoc = 1
+	for d in obstacles:
+		for o in d:
+			if o.loc == newloc:
+				encountered = o
+				validLoc = 1
+			'''
 	if x > 1:
 		if o.loc == newloc:
 			moveVal = x-1
@@ -303,12 +309,13 @@ def doMove(you, obstacles, *command):
 			moveVal = you.loc.y
 			newloc.y = 0
 			validLoc = 2
+			'''
 	
 	if validLoc == 2:
 		print("You walked %d and encountered a wall" % (moveVal))
 		
 	if validLoc == 1:
-		print("There is a wall in your way")
+		print("There is a", encountered, "in your way")
 	elif validLoc == 3:
 		print("You must specify a direction! Only forward works!")
 	else:
