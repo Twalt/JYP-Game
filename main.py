@@ -86,7 +86,6 @@ def generateLandmarks():
 		for t in data.cow]
 	return [boulder, tree1, tree2, tree3, fence, outh, chest, cow]			
 		
-
 def generateObstacles():
 	obs = [Wall(Location(51, 41))]
 	for x in range (0, 51):
@@ -193,18 +192,24 @@ def doMove(you, obstacles, *command):
 		x = 0
 	if x == 0:
 		print("Invalid move distance")
+		
+	direc = -1
 	#North
 	if you.compass.direction == 0:
 		newloc = Location(you.loc.x, you.loc.y - x)
+		direc = 0
 	#East
 	elif you.compass.direction == 1:
 		newloc = Location(you.loc.x + x, you.loc.y)
+		direc = 1
 	#South
 	elif you.compass.direction == 2:
 		newloc = Location(you.loc.x, you.loc.y + x)
+		direc = 2
 	#West
 	elif you.compass.direction == 3:
 		newloc = Location(you.loc.x - x, you.loc.y)
+		direc = 3
 	
 	validLoc = 0
 	moveVal = 0
@@ -222,7 +227,10 @@ def doMove(you, obstacles, *command):
 			if o.loc == newloc:
 				encountered = o
 				validLoc = 1
-
+#loop from 1 - x+1
+#check direction
+#increment step
+#check if obstacle
 	if x > 1:
 		if o.loc == newloc:
 			moveVal = x-1

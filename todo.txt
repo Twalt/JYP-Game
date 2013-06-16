@@ -1,12 +1,11 @@
 Things to do:
 
+move multiple spaces
 crashes when only type look
 object proximity warning
 	only in front? back by 1 space
 Pickup
-Pickup
 Inventory list
-landmarks
 look (around)
 weapon
 attack defense stats
@@ -26,4 +25,4 @@ house
 #add compass?
 #create Items - spawn
 #event loop
-#move multiple spaces
+
