@@ -20,3 +20,6 @@ class Landmark(Obstacle):
 		
 	def __str__(self):
 		return "%s" % (self.lType)
+		
+	def toStr(self):
+		return "%s" % (self.lType)

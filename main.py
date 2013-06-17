@@ -29,7 +29,6 @@ def main():
 		items = generateItems()
 		
 		while valid:
-			print(you.loc)
 			try:
 				var = raw_input("What would you like to do? : ")
 			except NameError:
@@ -108,57 +107,60 @@ def doHelp(*extras):
 def doLook(you, obstacles, command, way, *extras):
 	retVal = 0
 	if way == 'left':	
-		for o in obstacles:
-			#North
-			if you.compass.direction == 0:
-				if you.loc.x - 1 == o.loc.x:
-					if you.loc.y == o.loc.y:
-						print(o.loc)
-						retVal = 1
-			#East
-			elif you.compass.direction == 1:
-				if you.loc.y - 1 == o.loc.y:
-					if you.loc.x == o.loc.x:
-						print(o.loc)
-						retVal = 1
-			#South
-			elif you.compass.direction == 2:
-				if you.loc.x + 1 == o.loc.x:
-					if you.loc.y == o.loc.y:
-						print(o.loc)
-						retVal = 1
-			#West
-			elif you.compass.direction == 3:
-				if you.loc.y + 1 == o.loc.y:
-					if you.loc.x == o.loc.x:
-						print(o.loc)
-						retVal = 1
-		if retVal == 0:
-			retVal = 3			
+		
+		for d in obstacles:
+			for o in d:
+				#North
+				if you.compass.direction == 0:
+					if you.loc.x - 1 == o.loc.x:
+						if you.loc.y == o.loc.y:
+							print(o.loc)
+							retVal = 1
+				#East
+				elif you.compass.direction == 1:
+					if you.loc.y - 1 == o.loc.y:
+						if you.loc.x == o.loc.x:
+							print(o.loc)
+							retVal = 1
+				#South
+				elif you.compass.direction == 2:
+					if you.loc.x + 1 == o.loc.x:
+						if you.loc.y == o.loc.y:
+							print(o.loc)
+							retVal = 1
+				#West
+				elif you.compass.direction == 3:
+					if you.loc.y + 1 == o.loc.y:
+						if you.loc.x == o.loc.x:
+							print(o.loc)
+							retVal = 1
+			if retVal == 0:
+				retVal = 3			
 	elif way == 'right':
-		for o in obstacles:
-			#North
-			if you.compass.direction == 0:
-				if you.loc.x + 1 == o.loc.x:
-					if you.loc.y == o.loc.y:
-						retVal = 2
-			#East
-			elif you.compass.direction == 1:
-				if you.loc.y + 1 == o.loc.y:
-					if you.loc.x == o.loc.x:
-						retVal = 2
-			#South
-			elif you.compass.direction == 2:
-				if you.loc.x - 1 == o.loc.x:
-					if you.loc.y == o.loc.y:
-						retVal = 2
-			#West
-			elif you.compass.direction == 3:
-				if you.loc.y - 1 == o.loc.y:
-					if you.loc.x == o.loc.x:
-						retVal = 2
-		if retVal == 0:
-			retVal = 4			
+		for d in obstacles:
+			for o in d:
+				#North
+				if you.compass.direction == 0:
+					if you.loc.x + 1 == o.loc.x:
+						if you.loc.y == o.loc.y:
+							retVal = 2
+				#East
+				elif you.compass.direction == 1:
+					if you.loc.y + 1 == o.loc.y:
+						if you.loc.x == o.loc.x:
+							retVal = 2
+				#South
+				elif you.compass.direction == 2:
+					if you.loc.x - 1 == o.loc.x:
+						if you.loc.y == o.loc.y:
+							retVal = 2
+				#West
+				elif you.compass.direction == 3:
+					if you.loc.y - 1 == o.loc.y:
+						if you.loc.x == o.loc.x:
+							retVal = 2
+			if retVal == 0:
+				retVal = 4			
 	if retVal == 1:
 		print("There is a wall to the left of you.")
 	elif retVal == 2:
@@ -187,82 +189,75 @@ def doMove(you, obstacles, *command):
 	try:
 		if len(command) >2:
 			if command[2] != '':
+				#value of move distance
 				x = int(command[2])
 	except ValueError:
 		x = 0
 	if x == 0:
 		print("Invalid move distance")
 		
-	direc = -1
-	#North
-	if you.compass.direction == 0:
-		newloc = Location(you.loc.x, you.loc.y - x)
-		direc = 0
-	#East
-	elif you.compass.direction == 1:
-		newloc = Location(you.loc.x + x, you.loc.y)
-		direc = 1
-	#South
-	elif you.compass.direction == 2:
-		newloc = Location(you.loc.x, you.loc.y + x)
-		direc = 2
-	#West
-	elif you.compass.direction == 3:
-		newloc = Location(you.loc.x - x, you.loc.y)
-		direc = 3
+	if x > 0:
+		canMove = True
+	else:
+		canMove = False
+		
+	counter = 0
 	
-	validLoc = 0
-	moveVal = 0
-	if len(command) >1:
-		if command[1] != "forward":
+	while canMove:
+		#increment counter
+		#check if obstacle
+		#move forward 1
+		#
+		counter += 1
+			
+		#North
+		if you.compass.direction == 0:
+			newloc = Location(you.loc.x, you.loc.y - 1)
+		#East
+		elif you.compass.direction == 1:
+			newloc = Location(you.loc.x + 1, you.loc.y)
+		#South
+		elif you.compass.direction == 2:
+			newloc = Location(you.loc.x, you.loc.y + 1)
+		#West
+		elif you.compass.direction == 3:
+			newloc = Location(you.loc.x - 1, you.loc.y)
+		
+		validLoc = 0
+		if len(command) >1:
+			if command[1] != "forward":
+				validLoc = 3
+				x = 0
+		else:
 			validLoc = 3
 			x = 0
-	else:
-		validLoc = 3
-		x = 0
+			
 		
+		for d in obstacles:
+			for o in d:
+				if o.loc == newloc:
+					encountered = o
+					if x > 1:
+						validLoc = 2
+					else:
+						validLoc = 1
+					canMove = False
 		
-	for d in obstacles:
-		for o in d:
-			if o.loc == newloc:
-				encountered = o
-				validLoc = 1
-#loop from 1 - x+1
-#check direction
-#increment step
-#check if obstacle
-	if x > 1:
 		if o.loc == newloc:
-			moveVal = x-1
 			validLoc = 2
 			you.loc = newloc
-		elif newloc.x >50:
-			moveVal = 50 - you.loc.x
-			newloc.x = 50
-			validLoc = 2
-		elif newloc.x <0:
-			moveVal = you.loc.x
-			newloc.x = 0
-			validLoc = 2
-		elif newloc.y >40:
-			moveVal = 40 - you.loc.y
-			newloc.y = 40
-			validLoc = 2
-		elif newloc.y <0:
-			moveVal = you.loc.y
-			newloc.y = 0
-			validLoc = 2
-
+		if counter == x:
+			canMove = False
+		if canMove:
+			you.loc = newloc
 	
 	if validLoc == 2:
-		print("You walked %d and encountered a wall" % (moveVal))
+		print("You walked %d and encountered a %s" % (counter-1, encountered.toStr()))
 		
 	if validLoc == 1:
 		print("There is a", encountered, "in your way")
 	elif validLoc == 3:
 		print("You must specify a direction! Only forward works!")
-	else:
-		you.loc = newloc
 	
 	return True
 	
