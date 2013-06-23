@@ -115,25 +115,25 @@ def doLook(you, obstacles, command, *extras):
 					if you.compass.direction == 0:
 						if you.loc.x - 1 == o.loc.x:
 							if you.loc.y == o.loc.y:
-								print(o.loc)
+								encountered = o
 								retVal = 1
 					#East
 					elif you.compass.direction == 1:
 						if you.loc.y - 1 == o.loc.y:
 							if you.loc.x == o.loc.x:
-								print(o.loc)
+								encountered = o
 								retVal = 1
 					#South
 					elif you.compass.direction == 2:
 						if you.loc.x + 1 == o.loc.x:
 							if you.loc.y == o.loc.y:
-								print(o.loc)
+								encountered = o
 								retVal = 1
 					#West
 					elif you.compass.direction == 3:
 						if you.loc.y + 1 == o.loc.y:
 							if you.loc.x == o.loc.x:
-								print(o.loc)
+								encountered = o
 								retVal = 1
 				if retVal == 0:
 					retVal = 3			
@@ -144,28 +144,32 @@ def doLook(you, obstacles, command, *extras):
 					if you.compass.direction == 0:
 						if you.loc.x + 1 == o.loc.x:
 							if you.loc.y == o.loc.y:
+								encountered = o
 								retVal = 2
 					#East
 					elif you.compass.direction == 1:
 						if you.loc.y + 1 == o.loc.y:
 							if you.loc.x == o.loc.x:
+								encountered = o
 								retVal = 2
 					#South
 					elif you.compass.direction == 2:
 						if you.loc.x - 1 == o.loc.x:
 							if you.loc.y == o.loc.y:
+								encountered = o
 								retVal = 2
 					#West
 					elif you.compass.direction == 3:
 						if you.loc.y - 1 == o.loc.y:
 							if you.loc.x == o.loc.x:
+								encountered = o
 								retVal = 2
 				if retVal == 0:
 					retVal = 4			
 	if retVal == 1:
-		print("There is a wall to the left of you.")
+		print("There is a ",encountered," to the left of you.")
 	elif retVal == 2:
-		print("There is a wall to the right of you.")
+		print("There is a ",encountered." to the right of you.")
 	elif retVal == 3:
 		print("There is nothing to the left of you.")
 	elif retVal == 4:
