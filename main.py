@@ -104,63 +104,64 @@ def doHelp(*extras):
 	
 	return True
 
-def doLook(you, obstacles, command, way, *extras):
+def doLook(you, obstacles, command, *extras):
 	retVal = 0
-	if way == 'left':	
-		
-		for d in obstacles:
-			for o in d:
-				#North
-				if you.compass.direction == 0:
-					if you.loc.x - 1 == o.loc.x:
-						if you.loc.y == o.loc.y:
-							print(o.loc)
-							retVal = 1
-				#East
-				elif you.compass.direction == 1:
-					if you.loc.y - 1 == o.loc.y:
-						if you.loc.x == o.loc.x:
-							print(o.loc)
-							retVal = 1
-				#South
-				elif you.compass.direction == 2:
-					if you.loc.x + 1 == o.loc.x:
-						if you.loc.y == o.loc.y:
-							print(o.loc)
-							retVal = 1
-				#West
-				elif you.compass.direction == 3:
-					if you.loc.y + 1 == o.loc.y:
-						if you.loc.x == o.loc.x:
-							print(o.loc)
-							retVal = 1
-			if retVal == 0:
-				retVal = 3			
-	elif way == 'right':
-		for d in obstacles:
-			for o in d:
-				#North
-				if you.compass.direction == 0:
-					if you.loc.x + 1 == o.loc.x:
-						if you.loc.y == o.loc.y:
-							retVal = 2
-				#East
-				elif you.compass.direction == 1:
-					if you.loc.y + 1 == o.loc.y:
-						if you.loc.x == o.loc.x:
-							retVal = 2
-				#South
-				elif you.compass.direction == 2:
-					if you.loc.x - 1 == o.loc.x:
-						if you.loc.y == o.loc.y:
-							retVal = 2
-				#West
-				elif you.compass.direction == 3:
-					if you.loc.y - 1 == o.loc.y:
-						if you.loc.x == o.loc.x:
-							retVal = 2
-			if retVal == 0:
-				retVal = 4			
+	if len(extras) > 0:
+		if extras[0] == 'left':	
+			
+			for d in obstacles:
+				for o in d:
+					#North
+					if you.compass.direction == 0:
+						if you.loc.x - 1 == o.loc.x:
+							if you.loc.y == o.loc.y:
+								print(o.loc)
+								retVal = 1
+					#East
+					elif you.compass.direction == 1:
+						if you.loc.y - 1 == o.loc.y:
+							if you.loc.x == o.loc.x:
+								print(o.loc)
+								retVal = 1
+					#South
+					elif you.compass.direction == 2:
+						if you.loc.x + 1 == o.loc.x:
+							if you.loc.y == o.loc.y:
+								print(o.loc)
+								retVal = 1
+					#West
+					elif you.compass.direction == 3:
+						if you.loc.y + 1 == o.loc.y:
+							if you.loc.x == o.loc.x:
+								print(o.loc)
+								retVal = 1
+				if retVal == 0:
+					retVal = 3			
+		elif extras[0] == 'right':
+			for d in obstacles:
+				for o in d:
+					#North
+					if you.compass.direction == 0:
+						if you.loc.x + 1 == o.loc.x:
+							if you.loc.y == o.loc.y:
+								retVal = 2
+					#East
+					elif you.compass.direction == 1:
+						if you.loc.y + 1 == o.loc.y:
+							if you.loc.x == o.loc.x:
+								retVal = 2
+					#South
+					elif you.compass.direction == 2:
+						if you.loc.x - 1 == o.loc.x:
+							if you.loc.y == o.loc.y:
+								retVal = 2
+					#West
+					elif you.compass.direction == 3:
+						if you.loc.y - 1 == o.loc.y:
+							if you.loc.x == o.loc.x:
+								retVal = 2
+				if retVal == 0:
+					retVal = 4			
 	if retVal == 1:
 		print("There is a wall to the left of you.")
 	elif retVal == 2:

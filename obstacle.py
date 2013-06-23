@@ -13,6 +13,9 @@ class Wall(Obstacle):
 	def __str__(self):
 		return "wall"
 		
+	def toStr(self):
+		return "wall"
+		
 class Landmark(Obstacle):
 	def __init__(self,loc , lType):
 		self.loc = loc
