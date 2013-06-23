@@ -167,9 +167,9 @@ def doLook(you, obstacles, command, *extras):
 				if retVal == 0:
 					retVal = 4			
 	if retVal == 1:
-		print("There is a ",encountered," to the left of you.")
+		print("There is a",encountered,"to the left of you.")
 	elif retVal == 2:
-		print("There is a ",encountered." to the right of you.")
+		print("There is a",encountered,"to the right of you.")
 	elif retVal == 3:
 		print("There is nothing to the left of you.")
 	elif retVal == 4:
