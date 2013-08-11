@@ -43,6 +43,7 @@ def main():
 			events['turn'] = doTurn
 			events['move'] = doMove
 			events['walk'] = doMove
+			events['loc'] = doLoc
 			events['compass'] = doCompass
 			events['look'] = doLook
 			events['help'] = doHelp
@@ -66,24 +67,30 @@ def main():
 	except KeyboardInterrupt:
 		print("\nQuitting")
 
+def doLoc(you, *extras):
+	print(you.loc)
+	return True
+
 def generateLandmarks():
-	boulder = [Landmark(Location(t[0], t[1]), 'boulder') 
+	blder = [Landmark(Location(t[0], t[1]), 'boulder') 
 		for t in data.boulder]
 	tree1 = [Landmark(Location(t[0], t[1]), 'dead tree') 
 		for t in data.tree1]
 	tree2 = [Landmark(Location(t[0], t[1]), 'plagued tree') 
 		for t in data.tree2]
-	tree3 = [Landmark(Location(t[0], t[1]),'charred tree') 
+	tree3 = [Landmark(Location(t[0], t[1]), 'charred tree') 
 		for t in data.tree3]
-	fence = [Landmark(Location(t[0], t[1]),'broken fence gate') 
+	fence = [Landmark(Location(t[0], t[1]), 'broken fence gate') 
 		for t in data.fence]
-	outh = [Landmark(Location(t[0], t[1]),'smelly boarded-up outhouse') 
+	ouths = [Landmark(Location(t[0], t[1]), 'smelly boarded-up outhouse') 
 		for t in data.outhouse]
-	chest = [Landmark(Location(t[0], t[1]),'mysterious locked chest') 
+	chest = [Landmark(Location(t[0], t[1]), 'mysterious locked chest') 
 		for t in data.chest]
-	cow = [Landmark(Location(t[0], t[1]),'very stubborn cow') 
+	cow = [Landmark(Location(t[0], t[1]), 'very stubborn cow') 
 		for t in data.cow]
-	return [boulder, tree1, tree2, tree3, fence, outh, chest, cow]			
+	house = [Landmark(Location(t[0], t[1]),'sinister looking house')
+		for t in data.house]
+	return [blder, tree1, tree2, tree3, fence, ouths, chest, cow, house]
 		
 def generateObstacles():
 	obs = [Wall(Location(51, 41))]
@@ -236,7 +243,6 @@ def doMove(you, obstacles, *command):
 		else:
 			validLoc = 3
 			x = 0
-			
 		
 		for d in obstacles:
 			for o in d:
@@ -251,7 +257,7 @@ def doMove(you, obstacles, *command):
 		if o.loc == newloc:
 			validLoc = 2
 			you.loc = newloc
-		if counter == x:
+		if counter == x+1:
 			canMove = False
 		if canMove:
 			you.loc = newloc
@@ -260,7 +266,7 @@ def doMove(you, obstacles, *command):
 		print("You walked %d and encountered a %s" % (counter-1, encountered.toStr()))
 		
 	if validLoc == 1:
-		print("There is a", encountered, "in your way")
+		print("There is a %s in your way" % (encountered.toStr()))
 	elif validLoc == 3:
 		print("You must specify a direction! Only forward works!")
 	

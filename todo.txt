@@ -10,8 +10,6 @@ look (around)
 weapon
 attack defense stats
 boss
-house
-
 
 #create walls & 
 	doors
@@ -25,4 +23,4 @@ house
 #add compass?
 #create Items - spawn
 #event loop
-
+#house
