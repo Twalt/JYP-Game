@@ -20,13 +20,15 @@ def main():
 	try:
 		print("Type 'help' for a list of commands!")
 		valid = True
+		
+		#Generates player at default location facing north
 		you = Character(Location(25,35), Compass(0))
-		obs = generateObstacles()
-		Landmarks = generateLandmarks()
-		obstacles = [obs]
+		obs = generateObstacles()			#creates walls
+		Landmarks = generateLandmarks()		#creates landmark objects
+		obstacles = [obs]					#creates array of obstacles
 		for l in Landmarks:
-			obstacles.append(l)
-		items = generateItems()
+			obstacles.append(l)		#adds landmarks loc to wall loc list
+		items = generateItems()				#creates item list
 		
 		while valid:
 			try:
@@ -37,7 +39,8 @@ def main():
 			command = var.split(' ')
 			if command[0] == 'quit':
 				valid = False
-					
+			
+			#this is the event function list		
 			events = dict()
 			events['quit'] = doQuit
 			events['turn'] = doTurn
@@ -50,6 +53,7 @@ def main():
 			
 			validCommand = False
 			
+			#event loop checks input for keys in list
 			for key in events:
 				if command[0] == key:
 					doThis = events[key]
@@ -59,7 +63,7 @@ def main():
 			if not validCommand:
 				print("You can't do that right now.")
 			
-			if you.compass.direction < 0:
+			if you.compass.direction < 0:	#changes dir to valid value
 				you.compass.direction += 4
 			elif you.compass.direction > 3:
 				you.compass.direction -= 4
@@ -71,6 +75,8 @@ def doLoc(you, *extras):
 	print(you.loc)
 	return True
 
+#creates landmark objects based on the location values collected
+#from the data.py file
 def generateLandmarks():
 	blder = [Landmark(Location(t[0], t[1]), 'boulder') 
 		for t in data.boulder]
@@ -92,6 +98,7 @@ def generateLandmarks():
 		for t in data.house]
 	return [blder, tree1, tree2, tree3, fence, ouths, chest, cow, house]
 		
+#creates walls between the predetermined boundaries
 def generateObstacles():
 	obs = [Wall(Location(51, 41))]
 	for x in range (0, 51):
@@ -102,6 +109,7 @@ def generateObstacles():
 		obs.append(Wall(Location(51, y)))
 	return obs
 
+#prints lines from help file 
 def doHelp(*extras):
 	f = open('help.txt')
 	lines = f.readlines()
@@ -111,12 +119,16 @@ def doHelp(*extras):
 	
 	return True
 
+#prints out objects in adjacent locations
 def doLook(you, obstacles, command, *extras):
 	retVal = 0
+	#there is something after look
 	if len(extras) > 0:
+		#if told to look left
 		if extras[0] == 'left':	
-			
+			#for all each obstacle
 			for d in obstacles:
+				#for each part of each obstacle
 				for o in d:
 					#North
 					if you.compass.direction == 0:
@@ -143,9 +155,12 @@ def doLook(you, obstacles, command, *extras):
 								encountered = o
 								retVal = 1
 				if retVal == 0:
-					retVal = 3			
+					retVal = 3		
+		#if told to look left	
 		elif extras[0] == 'right':
+			#for all each obstacle
 			for d in obstacles:
+				#for each part of each obstacle
 				for o in d:
 					#North
 					if you.compass.direction == 0:
@@ -188,12 +203,16 @@ def doQuit(*extras):
 	return False
 	
 def doTurn(you, obstacles, command, way, *extras):
-	if way == 'left':
+	if way == '':
+		print("You must specify a direction.")
+	elif way == 'left':
 		you.compass.direction -= 1
 	elif way == 'right':
 		you.compass.direction += 1
 	elif way == 'around':
 		you.compass.direction += 2
+	else:
+		print("You can't turn that way.")
 	return True
 
 def doMove(you, obstacles, *command):
@@ -215,13 +234,20 @@ def doMove(you, obstacles, *command):
 		
 	counter = 0
 	
+	#moves forward in increments of 1
 	while canMove:
-		#increment counter
-		#check if obstacle
-		#move forward 1
-		#
 		counter += 1
+		
+		validLoc = 0
+		if len(command) >1:
+			if command[1] != "forward":
+				validLoc = 3
+				x = 0
+		else:
+			validLoc = 3
+			x = 0
 			
+		#creates a location object based on the compass, one spot away
 		#North
 		if you.compass.direction == 0:
 			newloc = Location(you.loc.x, you.loc.y - 1)
@@ -235,17 +261,11 @@ def doMove(you, obstacles, *command):
 		elif you.compass.direction == 3:
 			newloc = Location(you.loc.x - 1, you.loc.y)
 		
-		validLoc = 0
-		if len(command) >1:
-			if command[1] != "forward":
-				validLoc = 3
-				x = 0
-		else:
-			validLoc = 3
-			x = 0
-		
+		#for each obstacle 
 		for d in obstacles:
+			#for each location in each obstacle
 			for o in d:
+				#if the new location interferes with an existing location
 				if o.loc == newloc:
 					encountered = o
 					if x > 1:
@@ -254,9 +274,6 @@ def doMove(you, obstacles, *command):
 						validLoc = 1
 					canMove = False
 		
-		if o.loc == newloc:
-			validLoc = 2
-			you.loc = newloc
 		if counter == x+1:
 			canMove = False
 		if canMove:
