@@ -23,12 +23,12 @@ def main():
 		
 		#Generates player at default location facing north
 		you = Character(Location(25,35), Compass(0))
-		obs = generateObstacles()			#creates walls
-		landmarks = generateLandmarks()		#creates landmark objects
+		obs = generateObstacles()			#벽들 창조해
+		landmarks = generateLandmarks()		#랜그마크  객체들 창조해
 		for x in range(len(landmarks)-1):
 			for y in range(len(landmarks[x])-1):
 				obs[x][y] = landmarks[x][y]
-		items = generateItems()				#creates item list
+		items = generateItems()				#목록 창조해
 		
 		while valid:
 			try:
@@ -40,7 +40,7 @@ def main():
 			if command[0] == 'quit':
 				valid = False
 			
-			#this is the event function list		
+			#이것이 이벤트 기능 리스트이다		
 			events = dict()
 			events['quit'] = doQuit
 			events['turn'] = doTurn
