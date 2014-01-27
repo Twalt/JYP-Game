@@ -24,10 +24,10 @@ def main():
 		#Generates player at default location facing north
 		you = Character(Location(25,35), Compass(0))
 		obs = generateObstacles()			#creates walls
-		Landmarks = generateLandmarks()		#creates landmark objects
-		obstacles = [obs]					#creates array of obstacles
-		for l in Landmarks:
-			obstacles.append(l)		#adds landmarks loc to wall loc list
+		landmarks = generateLandmarks()		#creates landmark objects
+		for x in range(len(landmarks)-1):
+			for y in range(len(landmarks[x])-1):
+				obs[x][y] = landmarks[x][y]
 		items = generateItems()				#creates item list
 		
 		while valid:
@@ -57,7 +57,7 @@ def main():
 			for key in events:
 				if command[0] == key:
 					doThis = events[key]
-					valid = doThis(you, obstacles, *command)
+					valid = doThis(you, obs, *command)
 					validCommand = True
 			
 			if not validCommand:
@@ -78,35 +78,55 @@ def doLoc(you, *extras):
 #creates landmark objects based on the location values collected
 #from the data.py file
 def generateLandmarks():
-	blder = [Landmark(Location(t[0], t[1]), 'boulder') 
-		for t in data.boulder]
-	tree1 = [Landmark(Location(t[0], t[1]), 'dead tree') 
-		for t in data.tree1]
-	tree2 = [Landmark(Location(t[0], t[1]), 'plagued tree') 
-		for t in data.tree2]
-	tree3 = [Landmark(Location(t[0], t[1]), 'charred tree') 
-		for t in data.tree3]
-	fence = [Landmark(Location(t[0], t[1]), 'broken fence gate') 
-		for t in data.fence]
-	ouths = [Landmark(Location(t[0], t[1]), 'smelly boarded-up outhouse') 
-		for t in data.outhouse]
-	chest = [Landmark(Location(t[0], t[1]), 'mysterious locked chest') 
-		for t in data.chest]
-	cow = [Landmark(Location(t[0], t[1]), 'very stubborn cow') 
-		for t in data.cow]
-	house = [Landmark(Location(t[0], t[1]),'sinister looking house')
-		for t in data.house]
-	return [blder, tree1, tree2, tree3, fence, ouths, chest, cow, house]
+	landmarks = [[0 for x in range(41)] for x in range(51)] 
+	
+	#adds boulder coordinates to the array
+	for y in [Landmark(Location(t[0], t[1]), 'boulder') for t in data.boulder]:
+		landmarks[y.loc.x][y.loc.y] = 'boulder'
+		
+	#adds first tree coordinates to the array
+	for y in [Landmark(Location(t[0], t[1]), 'boulder') for t in data.tree1]:
+		landmarks[y.loc.x][y.loc.y] = 'dead tree'
+		
+	#adds second tree coordinates to the array
+	for y in [Landmark(Location(t[0], t[1]), 'boulder') for t in data.tree2]:
+		landmarks[y.loc.x][y.loc.y] = 'plagued tree'
+		
+	#adds third tree coordinates to the array
+	for y in [Landmark(Location(t[0], t[1]), 'boulder') for t in data.tree3]:
+		landmarks[y.loc.x][y.loc.y] = 'charred tree'
+		
+	#adds fence coordinates to the array
+	for y in [Landmark(Location(t[0], t[1]), 'boulder') for t in data.fence]:
+		landmarks[y.loc.x][y.loc.y] = 'broken fence gate'
+		
+	#adds outhouse coordinates to the array
+	for y in [Landmark(Location(t[0], t[1]), 'boulder') for t in data.outhouse]:
+		landmarks[y.loc.x][y.loc.y] = 'smelly boarded-up outhouse'
+		
+	#adds chest coordinates to the array
+	for y in [Landmark(Location(t[0], t[1]), 'boulder') for t in data.chest]:
+		landmarks[y.loc.x][y.loc.y] = 'mysterious locked chest'
+		
+	#adds cow coordinates to the array
+	for y in [Landmark(Location(t[0], t[1]), 'boulder') for t in data.cow]:
+		landmarks[y.loc.x][y.loc.y] = 'very stubborn cow'
+		
+	#adds house coordinates to the array
+	for y in [Landmark(Location(t[0], t[1]), 'boulder') for t in data.house]:
+		landmarks[y.loc.x][y.loc.y] = 'sinister looking house'
+	
+	return landmarks
 		
 #creates walls between the predetermined boundaries
 def generateObstacles():
-	obs = [Wall(Location(51, 41))]
-	for x in range (0, 51):
-		obs.append(Wall(Location(x, 0)))
-		obs.append(Wall(Location(x, 41)))
-	for y in range(1, 41):
-		obs.append(Wall(Location(0, y)))
-		obs.append(Wall(Location(51, y)))
+	obs = [[0 for x in range(41)] for x in range(51)] 
+	for x in range (0, 50):
+		obs[x][0] = 'wall'	
+		obs[x][40] = 'wall'
+	for y in range(0, 40):
+		obs[0][y] = 'wall'
+		obs[50][y] = 'wall'
 	return obs
 
 #prints lines from help file 
@@ -120,89 +140,66 @@ def doHelp(*extras):
 	return True
 
 #prints out objects in adjacent locations
-def doLook(you, obstacles, command, *extras):
-	retVal = 0
+def doLook(you, obs, command, *extras):
+	direction = 0
 	#there is something after look
 	if len(extras) > 0:
 		#if told to look left
 		if extras[0] == 'left':	
-			#for all each obstacle
-			for d in obstacles:
-				#for each part of each obstacle
-				for o in d:
-					#North
-					if you.compass.direction == 0:
-						if you.loc.x - 1 == o.loc.x:
-							if you.loc.y == o.loc.y:
-								encountered = o
-								retVal = 1
-					#East
-					elif you.compass.direction == 1:
-						if you.loc.y - 1 == o.loc.y:
-							if you.loc.x == o.loc.x:
-								encountered = o
-								retVal = 1
-					#South
-					elif you.compass.direction == 2:
-						if you.loc.x + 1 == o.loc.x:
-							if you.loc.y == o.loc.y:
-								encountered = o
-								retVal = 1
-					#West
-					elif you.compass.direction == 3:
-						if you.loc.y + 1 == o.loc.y:
-							if you.loc.x == o.loc.x:
-								encountered = o
-								retVal = 1
-				if retVal == 0:
-					retVal = 3		
+			direction = 1
+			#North
+			if you.compass.direction == 0:
+				if obs[you.loc.x-1][you.loc.y] != '':
+					encountered = obs[you.loc.x-1][you.loc.y]
+			#East
+			elif you.compass.direction == 1:
+				if obs[you.loc.x][you.loc.y-1] != '':
+					encountered = obs[you.loc.x][you.loc.y-1]
+			#South
+			elif you.compass.direction == 2:
+				if obs[you.loc.x+1][you.loc.y] != '':
+					encountered = obs[you.loc.x+1][you.loc.y]
+			#West
+			elif you.compass.direction == 3:
+				if obs[you.loc.x][you.loc.y+1] != '':
+					encountered = obs[you.loc.x][you.loc.y+1]	
 		#if told to look left	
 		elif extras[0] == 'right':
-			#for all each obstacle
-			for d in obstacles:
-				#for each part of each obstacle
-				for o in d:
-					#North
-					if you.compass.direction == 0:
-						if you.loc.x + 1 == o.loc.x:
-							if you.loc.y == o.loc.y:
-								encountered = o
-								retVal = 2
-					#East
-					elif you.compass.direction == 1:
-						if you.loc.y + 1 == o.loc.y:
-							if you.loc.x == o.loc.x:
-								encountered = o
-								retVal = 2
-					#South
-					elif you.compass.direction == 2:
-						if you.loc.x - 1 == o.loc.x:
-							if you.loc.y == o.loc.y:
-								encountered = o
-								retVal = 2
-					#West
-					elif you.compass.direction == 3:
-						if you.loc.y - 1 == o.loc.y:
-							if you.loc.x == o.loc.x:
-								encountered = o
-								retVal = 2
-				if retVal == 0:
-					retVal = 4			
-	if retVal == 1:
-		print("There is a",encountered,"to the left of you.")
-	elif retVal == 2:
-		print("There is a",encountered,"to the right of you.")
-	elif retVal == 3:
-		print("There is nothing to the left of you.")
-	elif retVal == 4:
-		print("There is nothing to the right of you.")
+			direction = 2
+			#North
+			if you.compass.direction == 0:
+				if obs[you.loc.x+1][you.loc.y] != '':
+					encountered = obs[you.loc.x+1][you.loc.y]
+			#East
+			elif you.compass.direction == 1:
+				if obs[you.loc.x][you.loc.y+1] != '':
+					encountered = obs[you.loc.x][you.loc.y+1]
+			#South
+			elif you.compass.direction == 2:
+				if obs[you.loc.x-1][you.loc.y] != '':
+					encountered = obs[you.loc.x-1][you.loc.y]
+			#West
+			elif you.compass.direction == 3:
+				if obs[you.loc.x][you.loc.y-1] != '':
+					encountered = obs[you.loc.x][you.loc.y-1]	
+					
+	if encountered != 0:
+		if direction == 1:
+			print("There is a",encountered,"to the left of you.")
+		else:
+			print("There is a",encountered,"to the right of you.")
+	else:
+		if direction == 1:
+			print("There is nothing to the left of you.")
+		else:
+			print("There is nothing to the right of you.")
 		
 	return True
 			
 def doQuit(*extras):
 	return False
 	
-def doTurn(you, obstacles, command, way, *extras):
+def doTurn(you, obs, command, way, *extras):
 	if way == '':
 		print("You must specify a direction.")
 	elif way == 'left':
@@ -215,7 +212,7 @@ def doTurn(you, obstacles, command, way, *extras):
 		print("You can't turn that way.")
 	return True
 
-def doMove(you, obstacles, *command):
+def doMove(you, obs, *command):
 	x = 1
 	try:
 		if len(command) >2:
@@ -260,30 +257,25 @@ def doMove(you, obstacles, *command):
 		#West
 		elif you.compass.direction == 3:
 			newloc = Location(you.loc.x - 1, you.loc.y)
-		
-		#for each obstacle 
-		for d in obstacles:
-			#for each location in each obstacle
-			for o in d:
-				#if the new location interferes with an existing location
-				if o.loc == newloc:
-					encountered = o
-					if x > 1:
-						validLoc = 2
-					else:
-						validLoc = 1
-					canMove = False
-		
+	
+		if obs[newloc.x][newloc.y] != 0:
+			encountered = obs[newloc.x][newloc.y]
+			if x > 1:
+				validLoc = 2
+			else:
+				validLoc = 1
+			canMove = False
+				
 		if counter == x+1:
 			canMove = False
 		if canMove:
 			you.loc = newloc
 	
 	if validLoc == 2:
-		print("You walked %d and encountered a %s" % (counter-1, encountered.toStr()))
+		print("You walked %d and encountered a %s" % (counter-1, encountered))
 		
 	if validLoc == 1:
-		print("There is a %s in your way" % (encountered.toStr()))
+		print("There is a %s in your way" % (encountered))
 	elif validLoc == 3:
 		print("You must specify a direction! Only forward works!")
 	
